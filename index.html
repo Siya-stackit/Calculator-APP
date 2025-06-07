@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Calculator</title>
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4">
+                <input type="text" id="display" value="0" />
+            </td>
+        </tr>
+        <tr>
+            <td class="digitButton" onclick="appendToDisplay('7')">7</td>
+            <td class="digitButton" onclick="appendToDisplay('8')">8</td>
+            <td class="digitButton" onclick="appendToDisplay('9')">9</td>
+            <td class="operatorButton" onclick="appendToDisplay('/')">/</td>
+        </tr>
+        <tr>
+            <td class="digitButton" onclick="appendToDisplay('4')">4</td>
+            <td class="digitButton" onclick="appendToDisplay('5')">5</td>
+            <td class="digitButton" onclick="appendToDisplay('6')">6</td>
+            <td class="operatorButton" onclick="appendToDisplay('*')">*</td>
+        </tr>
+        <tr>
+            <td class="digitButton" onclick="appendToDisplay('1')">1</td>
+            <td class="digitButton" onclick="appendToDisplay('2')">2</td>
+            <td class="digitButton" onclick="appendToDisplay('3')">3</td>
+            <td class="operatorButton" onclick="appendToDisplay('-')">-</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="digitButton" onclick="appendToDisplay('0')">0</td>
+            <td  class="ACButton" onclick="clearDisplay()">AC</td>
+            <td class="operatorButton" onclick="appendToDisplay('+')">+</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="operatorButton" onclick="calculateResult()">=</td>
+        </tr>
+    </table>
+
+    <script>
+        function appendToDisplay(value) {
+            const display = document.getElementById('display');
+            if (display.value === '0' && value !== '.') {
+                display.value = value;
+            } else {
+                display.value += value;
+            }
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '0';
+        }
+
+        function calculateResult() {
+            const display = document.getElementById('display');
+            try {
+                display.value = eval(display.value);
+            } catch (e) {
+                display.value = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
